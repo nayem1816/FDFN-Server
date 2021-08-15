@@ -13,7 +13,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //Firebase Admin
-var serviceAccount = require("./internet-provider-2-firebase-adminsdk-1p9ys-0718f8ba40.json");
+var serviceAccount = require("./config/internet-provider-2-firebase-adminsdk-1p9ys-0718f8ba40.json");
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
 });
