@@ -12,12 +12,6 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-//Firebase Admin
-var serviceAccount = require("./config/internet-provider-2-firebase-adminsdk-1p9ys-0718f8ba40.json");
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-});
-
 // Connect mongoDB-----
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@internetprovider.czasc.mongodb.net/internetServiceProvider?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
