@@ -195,6 +195,35 @@ client.connect((err) => {
     });
 });
 
+// Add Testimonial
+client.connect((err) => {
+    const testimonialCollection = client
+        .db("internetServiceProvider")
+        .collection("testimonialData");
+    // Testimonial Post Route
+    app.post("/testimonialData", (req, res) => {
+        const testimonialData = req.body;
+        testimonialCollection.insertOne(testimonialData).then((result) => {
+            res.send(result.insertedCount > 0);
+        });
+    });
+
+    // Testimonial get Route
+    app.get("/testimonials", (req, res) => {
+        testimonialCollection.find({}).toArray((err, documents) => {
+            res.send(documents);
+        });
+    });
+
+    //Testimonial Delate Route
+    app.delete("/testimonialDelete/:id", (req, res) => {
+        const id = ObjectID(req.params.id);
+        testimonialCollection.deleteOne({ _id: id }).then((result) => {
+            console.log(result.deletedCount > 0);
+        });
+    });
+});
+
 // Registration Form----------
 client.connect((err) => {
     const registerCollection = client
